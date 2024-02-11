@@ -93,7 +93,9 @@ async def start_command(client: Client, message: Message):
                 ]
             ]
         )
-        await message.reply_text(
+        msg = await message.reply_text(
+              await asyncio.sleep(8)
+              await msg.delete()
             text = START_MSG.format(
                 first = message.from_user.first_name,
                 last = message.from_user.last_name,
