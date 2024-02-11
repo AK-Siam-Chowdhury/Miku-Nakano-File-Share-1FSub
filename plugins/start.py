@@ -76,13 +76,16 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                l= await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                
+                await asyncio.sleep(10)
+                await l.delete()
                 await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 l = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
                 
-                await asyncio.sleep(60)
+                await asyncio.sleep(10)
                 await l.delete()
             except:
                 pass
@@ -96,7 +99,10 @@ async def start_command(client: Client, message: Message):
                 ]
             ]
         )
-        await message.reply_text(
+        l= await message.reply_text(
+            
+           await asyncio.sleep(10)
+           await l.delete()
             text = START_MSG.format(
                 first = message.from_user.first_name,
                 last = message.from_user.last_name,
